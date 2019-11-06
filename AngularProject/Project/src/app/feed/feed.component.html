@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-sm-9">
+        <div class="row justify-content-center">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#post_modal">New Post</button>
+        </div>
+        <div class="row justify-content-center" *ngFor='let temp of page'>
+            <div class="card bg-light mb-3 text-center" style="width: 512px;" *ngIf='temp != undefined'>
+
+                <h5 class="card-header text-left">
+                    <img src="{{temp.author.picture}}" style="max-width: 64px; max-height: 64px;" /> {{temp.author.firstname}} {{temp.author.lastname}}</h5>
+                <div class="card-body">
+                    <p class="card-text">{{temp.body}}</p>
+                    <img src='{{temp.image}}' class="mr-3" style="max-width: 100%" />
+                </div>
+                <div class="card-footer text-right">
+                    <footer class="blockquote-footer">
+                        {{temp.timestamp}}
+                        <BR>likes: {{temp.likes.length}}
+                        <button class="btn btn-primary btn-sm" (click)="likepost(temp)"><i class="fa fa-thumbs-up "></i></button>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div style="margin-right: 25px">
+            <app-friends></app-friends>
+        </div>
+    </div>
+</div>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" (click)="decrement()">Previous</a></li>
+        <li class="page-item"><a class="page-link" (click)="increment()">Next</a></li>
+    </ul>
+</nav>
+
+<div class="modal" tabindex="-1" role="dialog" id="post_modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <!-- Submission form -->
+                <form>
+                    <div class="form-group">
+                        <label for="postFormBody">New Post</label>
+                        <textarea class="form-control" id="inputDesc" rows="3" [(ngModel)]='newPostBody' [ngModelOptions]="{standalone: true}"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="form-group">
+                <label for="File">Profile image</label>
+                <input type="file" class="form-control-file" id="FileUp" (change)="onFileSelected($event)">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button id="SubmitPost" type="button" class="btn btn-primary" data-dismiss="modal" (click)="submitPost()">Post</button>
+            </div>
+        </div>
+    </div>
+</div>

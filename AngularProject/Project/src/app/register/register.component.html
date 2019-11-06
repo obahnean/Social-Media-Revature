@@ -1,0 +1,37 @@
+<h5 *ngIf="fail">Username Already Taken</h5>
+<div class="card container align-self-center" style="width: 24rem;">
+  <div class="card-body border-secondary">
+    <h5 class="card-title">Create Account</h5>
+    <form>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" [(ngModel)]='username' name="username">
+      </div>
+      <div class="form-group">
+        <label for="Password">Password</label>
+        <input type="password" class="form-control" [(ngModel)]='pword' name="pword">
+      </div>
+      <div class="form-group">
+        <label for="Confirm password">Confirm password</label>
+        <input type="password" class="form-control" [(ngModel)]='confirm_pword' name="confirm_pword">
+      </div>
+      <div class="form-group">
+        <label for="Firstname">Firstname</label>
+        <input type="text" class="form-control" [(ngModel)]='firstname' name="firstname">
+      </div>
+      <div class="form-group">
+        <label for="Lastname">Lastname</label>
+        <input type="text" class="form-control" [(ngModel)]='lastname' name="lastname">
+      </div>
+      <div class="form-group">
+        <label for="Email address">Email address</label>
+        <input type="email" class="form-control" [(ngModel)]='email' name="email">
+      </div>
+      <div class="form-group">
+        <label for="File">Profile image</label>
+        <input type="file" class="form-control-file" id="FileUp" (change)="onFileSelected($event)">
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="onPress()">Submit</button>
+    </form>
+  </div>
+</div>
